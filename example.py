@@ -7,7 +7,6 @@ import os
 currenr_dir = os.path.dirname(__file__)
 token_filename = os.path.join(currenr_dir, 'access_token.txt')
 
-reload(pp)
 
 access_token_file = open(token_filename, 'r')
 access_token = access_token_file.read().strip()
