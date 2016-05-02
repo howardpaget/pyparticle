@@ -13,7 +13,7 @@ class Particle():
 
     # Initialise connection with Cloud API
     # 
-    # If login details are provided a new access token will be generated other the token given will be used.
+    # If login details are provided a new access token will be generated otherwise the token given will be used.
     # The provided token is not checked for validity
     def __init__(self, username=None, password=None, access_token=None):
         
