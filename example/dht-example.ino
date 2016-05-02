@@ -27,51 +27,50 @@ double pressure = -1;
 void setup(){
 	Particle.publish("message", "Mini Weather Station Starting");
 
-    Particle.function("set_led", setLED);
+	Particle.function("set_led", setLED);
 
-    Particle.variable("humidity", humidity);
+	Particle.variable("humidity", humidity);
 	Particle.variable("temp_dht", temperature_dht);
 	Particle.variable("temp_bmp", temperature_bmp);
 	Particle.variable("pressure", pressure);
 
-    pinMode(D6, OUTPUT);
+	pinMode(D6, OUTPUT);
 
-    pinMode(power, OUTPUT);
-    digitalWrite(power, HIGH);
+	pinMode(power, OUTPUT);
+	digitalWrite(power, HIGH);
 
 	dht.begin();
 	bmp.begin();
 }
 
 void loop(){
-
 	delay(2000);
 
-    float h = dht.getHumidity();
-    float t_dht = dht.getTempCelcius();
-    float t_bmp = bmp.readTemperature();
-    float p = bmp.readPressure() / 100.0;
+	float h = dht.getHumidity();
+	float t_dht = dht.getTempCelcius();
+	float t_bmp = bmp.readTemperature();
+	float p = bmp.readPressure() / 100.0;
 
-    if(!isnan(h) && h > 0)
-        humidity = h;
+	if(!isnan(h) && h > 0)
+		humidity = h;
 
-    if(!isnan(t_dht) && t_dht > -274)
-	    temperature_dht = t_dht;
+	if(!isnan(t_dht) && t_dht > -274)
+		temperature_dht = t_dht;
 
 	if(!isnan(t_bmp) && t_bmp > -274)
-        temperature_bmp = t_bmp;
+		temperature_bmp = t_bmp;
 
-    if(!isnan(p) && p > 0)
-        pressure = p;
+	if(!isnan(p) && p > 0)
+		pressure = p;
 }
 
 int setLED(String command){
-    if(command == "on"){
-        digitalWrite(D6, HIGH);
-        return 1;
-    }else if(command == "off"){
-        digitalWrite(D6, LOW);
-        return 0;
-    }
-    return -1;
+	if(command == "on"){
+		digitalWrite(D6, HIGH);
+		return 1;
+	}else if(command == "off"){
+		digitalWrite(D6, LOW);
+		return 0;
+	}
+	return -1;
 }
