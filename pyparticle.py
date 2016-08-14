@@ -109,6 +109,7 @@ class Particle():
             else:
                 return_value_obj = self.api('POST', url, data={'arg': arg, 'access_token': self.access_token})
         except:
+            # TODO: Handle "Failed with Function ... not found" error
             raise
 
         return return_value_obj['return_value']
