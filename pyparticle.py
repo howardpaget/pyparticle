@@ -9,6 +9,9 @@ AUTH_TOKEN_URL = PARTICLE_API_URL + '/oauth/token'
 LIST_TOKENS_URL = PARTICLE_API_URL + '/v1/access_tokens' # Unimplemented
 DEVICES_URL = PARTICLE_API_URL + '/v1/devices'
 
+
+INVALID_DETAILS_MESSAGE = 'User credentials are invalid'
+
 class Particle():
 
     # Initialise the  object used to interact with Particle Cloud API
@@ -58,7 +61,10 @@ class Particle():
 
         if response.status_code != 200:
             if 'error_description' in response_obj:
-                raise Exception(response_obj['error_description'])
+                if response_obj['error_description'] == INVALID_DETAILS_MESSAGE:
+                    raise LoginError()
+                else:
+                    raise Exception(response_obj['error_description'])
 
             if 'error' in response_obj:
                 raise Exception(response_obj['error'])
@@ -106,3 +112,8 @@ class Particle():
             raise
 
         return return_value_obj['return_value']
+
+class LoginError(Exception):
+
+    def __init__(self):
+        super(Exception, self).__init__(INVALID_DETAILS_MESSAGE)
