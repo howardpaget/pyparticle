@@ -9,4 +9,4 @@ env:
 script:
 - export PARTICLE_IO_USER=$PARTICLE_IO_USER
 - export PARTICLE_IO_PASSWORD=$PARTICLE_IO_PASSWORD
-- python manage.py test
+- python "tests/test_run.py"
