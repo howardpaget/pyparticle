@@ -45,7 +45,7 @@ A variable is created on the device like so:
 ```C
 Particle.variable("humidity", humidity);
 
-/..
+//..
 
 float h = dht.getHumidity();
 if(!isnan(h) && h > 0)
