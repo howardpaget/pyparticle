@@ -11,7 +11,7 @@ Please find an example project here: [http://www.howardpaget.co.uk/blog/2016/08/
 
 ### Connecting to the Cloud API
 
-The Particle object is main object to access the particle.io cloud API it can be created by passing a login details or an access token.
+The Particle object is main object to access the particle.io cloud API it can be created by passing login details or an access token.
 
 ```Python
 import pyparticle as pp
